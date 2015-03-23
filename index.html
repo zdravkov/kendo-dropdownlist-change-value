@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="http://demos.telerik.com/kendo-ui/dropdownlist/angular">
+    <style>html { font-size: 12px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1316/styles/kendo.dataviz.default.min.css" />
+
+    <script src="http://cdn.kendostatic.com/2014.3.1316/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.3.1316/js/angular.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.3.1316/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="example" ng-app="KendoDemos">
+	<div class="demo-section k-content" ng-controller="MyCtrl">  
+	  <div class="box-col">
+		<h4>My data</h4>
+		<select kendo-drop-down-list="dropDown"
+				k-ng-model="value"
+				k-options="options"				
+				style="width: 200px"></select>				
+	  </div>
+	</div>
+</div>
+
+<script>
+  angular.module("KendoDemos", [ "kendo.directives" ])
+      .controller("MyCtrl", function($scope){
+          
+		 var productsDataSource = [
+		 {  "Key" : 111,
+			"Name" : "Item 1" },
+		 {  "Key" : 222,
+			"Name" : "Item 2" },
+	     {  "Key" : 333,
+			"Name" : "Item 3" },
+		 {  "Key" : 444,
+			"Name" : "" }
+        ];
+		
+		$scope.options = {						
+
+				dataSource: productsDataSource,
+		
+				dataTextField: 'Name',
+
+				dataValueField: 'Key',		
+			 change: function(e) {
+				var value = this.value();
+			
+				if(!this.text()){
+					this.text("["+value +"]")
+				}
+			  }			
+			};			
+      })
+</script>
+
+
+</body>
+</html>
